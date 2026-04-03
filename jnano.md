@@ -6,7 +6,24 @@ cmake -B build -DWHISPER_CUDA=1 -DGGML_CUDA_ARCHITECTURES=53
 cmake --build build -j 4 --config Release
 
 cp ./build/bin/* .
-./main -f samples/jfk.wav
+./main -f samples/jfk.wav -m models/ggml-small.bin
+```
+
+```bash
+./models/download-ggml-model.sh medium
+```
+
+models=(                                                                                                    \
+      "tiny"     "tiny-q4_0"     "tiny-q4_1"     "tiny-q5_0"     "tiny-q5_1"     "tiny-q8_0"                \
+      "base"     "base-q4_0"     "base-q4_1"     "base-q5_0"     "base-q5_1"     "base-q8_0"                \
+     "small"    "small-q4_0"    "small-q4_1"    "small-q5_0"    "small-q5_1"    "small-q8_0"                \
+    "medium"   "medium-q4_0"   "medium-q4_1"   "medium-q5_0"   "medium-q5_1"   "medium-q8_0"   "medium-dis" \
+  "large-v2" "large-v2-q4_0" "large-v2-q4_1" "large-v2-q5_0" "large-v2-q5_1" "large-v2-q8_0" "large-v2-dis" \
+  "large-v3-turbo"                           "large-v3-turbo-q5_0"           "large-v3-turbo-q8_0"          \
+)
+
+```bash
+./scripts/bench-all.sh 4 0 0
 ```
 
 ## clang
